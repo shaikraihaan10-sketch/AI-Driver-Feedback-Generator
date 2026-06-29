@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans transition-colors duration-300 antialiased overflow-x-hidden;
+  }
+  
+  body.dark {
+    @apply bg-darkbg text-slate-100;
+  }
+  
+  body:not(.dark) {
+    @apply bg-slate-50 text-slate-800;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded bg-slate-300/40 dark:bg-slate-700/40 transition-colors hover:bg-slate-400 dark:hover:bg-slate-600;
+}
+
+/* Glassmorphism Cards */
+.glass-panel {
+  @apply backdrop-blur-md rounded-2xl border transition-all duration-300;
+}
+
+.dark .glass-panel {
+  background: rgba(22, 31, 48, 0.65);
+  border-color: rgba(31, 46, 69, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+}
+
+/* Background animated gradient mesh */
+.bg-mesh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  pointer-events: none;
+}
+
+.dark .bg-mesh {
+  background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.08) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.06) 0%, transparent 45%),
+              #070A13;
+}
+
+.bg-mesh-light {
+  background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.04) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 45%),
+              #F8FAFC;
+}
+
+/* Pulse animation helper */
+.pulse-glow {
+  animation: pulse-glow-keyframes 2s infinite alternate;
+}
+
+@keyframes pulse-glow-keyframes {
+  0% {
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+  }
+}
+
+/* Custom Skeleton animation */
+.skeleton-loading {
+  background: linear-gradient(
+    90deg,
+    rgba(22, 31, 48, 0.4) 25%,
+    rgba(31, 46, 69, 0.6) 37%,
+    rgba(22, 31, 48, 0.4) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-keyframes 1.4s ease infinite;
+}
+
+.light .skeleton-loading {
+  background: linear-gradient(
+    90deg,
+    rgba(241, 245, 249, 0.6) 25%,
+    rgba(226, 232, 240, 0.9) 37%,
+    rgba(241, 245, 249, 0.6) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-keyframes 1.4s ease infinite;
+}
+
+@keyframes skeleton-keyframes {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
